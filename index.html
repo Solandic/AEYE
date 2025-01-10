@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI A-EYE</title>
+    <link rel="icon" href="images/icon.png">
+
+    <style>
+      @font-face {
+        font-family: pix;
+        src: url(fonts/dotty.ttf);
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: pix;
+      }
+      body {
+        background-color: #000;
+        color: #fff;
+        font-family: "Arial", sans-serif;
+        text-align: center;
+        margin-top: 10%;
+        overflow: hidden;
+      }
+      /* .letter {
+        position: absolute;
+        top: -50px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff,
+          0 0 30px #ffffff;
+        animation: fall 5s linear infinite, glitch 0.2s infinite;
+      }
+
+      @keyframes fall {
+        0% {
+          top: -50px;
+          opacity: 1;
+        }
+        100% {
+          top: 100vh;
+          opacity: 0;
+        }
+      }
+
+      @keyframes glitch {
+        0%,
+        100% {
+          transform: translateX(0) skewX(0deg);
+        }
+        25% {
+          transform: translateX(-3px) skewX(-5deg);
+        }
+        50% {
+          transform: translateX(3px) skewX(5deg);
+        }
+        75% {
+          transform: translateX(-3px) skewX(-5deg);
+        }
+      } */
+
+      .matrix {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+        background: black;
+      }
+
+      .matrix span {
+        position: absolute;
+        top: -100px;
+        font-size: 1rem;
+        color: #fff;
+        text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff,
+          0 0 30px #ffffff;
+        animation: fall 5s linear infinite;
+        white-space: nowrap;
+      }
+
+      @keyframes fall {
+        0% {
+          top: -100px;
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          top: 100%;
+          opacity: 0;
+        }
+      }
+
+      .eye {
+        height: clamp(220px, 60vw, 350px);
+        z-index: 100;
+        position: relative;
+      }
+      .countdown {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+      }
+      .time-box {
+        position: relative;
+        width: 80px;
+        height: 100px;
+        perspective: 1000px;
+      }
+      .time-box2 {
+        position: relative;
+        width: 800px;
+        height: 100px;
+        perspective: 1000px;
+        margin-bottom: 50px;
+      }
+      .time {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #111;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2.5rem;
+        border-radius: 10px;
+        border: 2px solid #333;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      }
+      .label {
+        margin-top: 10px;
+        font-size: 0.8rem;
+        color: #888;
+      }
+      .address {
+        margin: 1rem;
+        button {
+          cursor: pointer;
+          border: none;
+          background-color: transparent;
+          color: white;
+          text-shadow: 0 0 5px #ffffff, 0 0 10px #ffffff, 0 0 20px #ffffff,
+            0 0 30px #ffffff;
+          span {
+            font-size: clamp(0.7rem, 1.5vw, 1.5rem);
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="matrix" id="matrix"><span style="left: 0px; animation-delay: 3.38947s;">b</span><span style="left: 20px; animation-delay: 3.58721s;">o</span><span style="left: 40px; animation-delay: 2.27636s;">Q</span><span style="left: 60px; animation-delay: 3.80526s;">Y</span><span style="left: 80px; animation-delay: 4.73275s;">H</span><span style="left: 100px; animation-delay: 0.844541s;">S</span><span style="left: 120px; animation-delay: 0.64655s;">q</span><span style="left: 140px; animation-delay: 1.93743s;">v</span><span style="left: 160px; animation-delay: 4.19138s;">k</span><span style="left: 180px; animation-delay: 0.424886s;">p</span><span style="left: 200px; animation-delay: 4.78284s;">x</span><span style="left: 220px; animation-delay: 0.226334s;">m</span><span style="left: 240px; animation-delay: 2.0964s;">f</span><span style="left: 260px; animation-delay: 0.05981s;">k</span><span style="left: 280px; animation-delay: 0.254614s;">A</span><span style="left: 300px; animation-delay: 3.611s;">e</span><span style="left: 320px; animation-delay: 4.29436s;">z</span><span style="left: 340px; animation-delay: 1.6307s;">o</span><span style="left: 360px; animation-delay: 0.596064s;">F</span><span style="left: 380px; animation-delay: 0.62419s;">Q</span><span style="left: 400px; animation-delay: 1.2535s;">i</span><span style="left: 420px; animation-delay: 0.506117s;">P</span><span style="left: 440px; animation-delay: 0.876068s;">X</span><span style="left: 460px; animation-delay: 3.82078s;">0</span><span style="left: 480px; animation-delay: 0.45559s;">8</span><span style="left: 500px; animation-delay: 4.78857s;">s</span><span style="left: 520px; animation-delay: 2.51023s;">N</span><span style="left: 540px; animation-delay: 2.43327s;">V</span><span style="left: 560px; animation-delay: 0.356635s;">A</span><span style="left: 580px; animation-delay: 3.11396s;">w</span><span style="left: 600px; animation-delay: 0.110932s;">r</span><span style="left: 620px; animation-delay: 2.64549s;">b</span><span style="left: 640px; animation-delay: 4.80082s;">U</span><span style="left: 660px; animation-delay: 3.77608s;">Z</span><span style="left: 680px; animation-delay: 4.0633s;">R</span><span style="left: 700px; animation-delay: 3.97105s;">f</span><span style="left: 720px; animation-delay: 4.82513s;">M</span><span style="left: 740px; animation-delay: 2.62532s;">9</span><span style="left: 760px; animation-delay: 3.66124s;">S</span><span style="left: 780px; animation-delay: 0.436805s;">c</span><span style="left: 800px; animation-delay: 2.46683s;">C</span><span style="left: 820px; animation-delay: 1.93278s;">1</span><span style="left: 840px; animation-delay: 4.92227s;">v</span><span style="left: 860px; animation-delay: 4.79083s;">r</span><span style="left: 880px; animation-delay: 1.67113s;">p</span><span style="left: 900px; animation-delay: 3.36935s;">l</span><span style="left: 920px; animation-delay: 0.489135s;">o</span><span style="left: 940px; animation-delay: 1.62377s;">E</span><span style="left: 960px; animation-delay: 4.12016s;">y</span><span style="left: 980px; animation-delay: 3.39541s;">D</span><span style="left: 1000px; animation-delay: 4.35257s;">H</span><span style="left: 1020px; animation-delay: 3.35141s;">I</span><span style="left: 1040px; animation-delay: 1.20913s;">2</span><span style="left: 1060px; animation-delay: 1.26821s;">Q</span><span style="left: 1080px; animation-delay: 0.229884s;">g</span><span style="left: 1100px; animation-delay: 2.09594s;">B</span><span style="left: 1120px; animation-delay: 4.05786s;">m</span><span style="left: 1140px; animation-delay: 4.1709s;">y</span><span style="left: 1160px; animation-delay: 2.93927s;">r</span><span style="left: 1180px; animation-delay: 2.05399s;">m</span><span style="left: 1200px; animation-delay: 4.55658s;">y</span><span style="left: 1220px; animation-delay: 4.97315s;">D</span><span style="left: 1240px; animation-delay: 3.6649s;">c</span><span style="left: 1260px; animation-delay: 4.34357s;">n</span><span style="left: 1280px; animation-delay: 1.81609s;">S</span><span style="left: 1300px; animation-delay: 4.29227s;">a</span><span style="left: 1320px; animation-delay: 2.31988s;">T</span><span style="left: 1340px; animation-delay: 2.19764s;">o</span><span style="left: 1360px; animation-delay: 4.50285s;">q</span><span style="left: 1380px; animation-delay: 3.53485s;">Z</span><span style="left: 1400px; animation-delay: 1.52651s;">r</span><span style="left: 1420px; animation-delay: 2.35889s;">K</span><span style="left: 1440px; animation-delay: 0.881708s;">b</span><span style="left: 1460px; animation-delay: 1.32997s;">K</span><span style="left: 1480px; animation-delay: 0.644118s;">c</span><span style="left: 1500px; animation-delay: 4.32284s;">s</span><span style="left: 1520px; animation-delay: 1.85577s;">M</span><span style="left: 1540px; animation-delay: 4.40899s;">O</span><span style="left: 1560px; animation-delay: 2.33779s;">4</span><span style="left: 1580px; animation-delay: 3.37087s;">B</span><span style="left: 1600px; animation-delay: 3.24271s;">V</span><span style="left: 1620px; animation-delay: 2.22468s;">M</span><span style="left: 1640px; animation-delay: 1.67605s;">u</span><span style="left: 1660px; animation-delay: 1.56372s;">i</span><span style="left: 1680px; animation-delay: 2.34839s;">V</span><span style="left: 1700px; animation-delay: 1.98681s;">d</span><span style="left: 1720px; animation-delay: 0.0340476s;">H</span><span style="left: 1740px; animation-delay: 0.154178s;">F</span><span style="left: 1760px; animation-delay: 3.48116s;">7</span><span style="left: 1780px; animation-delay: 3.2848s;">Y</span><span style="left: 1800px; animation-delay: 1.84501s;">a</span><span style="left: 1820px; animation-delay: 3.20024s;">a</span><span style="left: 1840px; animation-delay: 4.67078s;">D</span><span style="left: 1860px; animation-delay: 2.89896s;">F</span><span style="left: 1880px; animation-delay: 2.23323s;">u</span></div>
+
+    <img src="images/eye.png" alt="img" class="eye" style="margin-top:-50px">
+    <div class="countdown">
+      <div class="time-box2">
+       <div  class="time">CA: kFyC8i7WpvjTrT2aMDhCoukrZqWjzRVJ63EDwPKiump</div>
+
+      </div>
+
+
+    </div>
+    <div class="countdown">
+      <div class="time-box">
+        <div id="days" class="time">??</div>
+        <div class="label">DAYS</div>
+      </div>
+      <div class="time-box">
+        <div id="hours" class="time">10</div>
+        <div class="label">HRS</div>
+      </div>
+      <div class="time-box">
+        <div id="minutes" class="time">14</div>
+        <div class="label">MINS</div>
+      </div>
+      <div class="time-box">
+        <div id="seconds" class="time">55</div>
+        <div class="label">SECS</div>
+      </div>
+
+    </div>
+
+
+    <script>
+      /*letters
+      const letters = "10";
+      const createLetter = () => {
+        const letter = document.createElement("div");
+        letter.classList.add("letter");
+        letter.textContent =
+          letters[Math.floor(Math.random() * letters.length)];
+        letter.style.left = Math.random() * window.innerWidth + "px";
+        letter.style.animationDuration = Math.random() * 3 + 3 + "s";         document.body.appendChild(letter);
+
+        letter.addEventListener("animationend", () => {
+          letter.remove();
+        });
+      };
+
+      setInterval(createLetter, 400);*/
+
+      // Generate Matrix Effect
+      const chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      const columns = Math.floor(window.innerWidth / 20);
+
+      for (let i = 0; i < columns; i++) {
+        const span = document.createElement("span");
+        span.style.left = `${i * 20}px`;
+        span.style.animationDelay = `${Math.random() * 5}s`;
+        span.textContent = chars.charAt(
+          Math.floor(Math.random() * chars.length)
+        );
+        matrix.appendChild(span);
+      }
+
+      // Update falling text dynamically
+      setInterval(() => {
+        const spans = document.querySelectorAll(".matrix span");
+        spans.forEach((span) => {
+          span.textContent = chars.charAt(
+            Math.floor(Math.random() * chars.length)
+          );
+        });
+      }, 100);
+
+      // countdoen
+      /* Existing countdown logic */
+      const countdownDate = new Date("Jan 21, 2069 24:00:00").getTime();
+
+      const updateCountdown = () => {
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
+
+        if (distance < 0) {
+          clearInterval(interval);
+          document.body.innerHTML = "<h1>Countdown Finished!</h1>";
+          return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor(
+          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        );
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // document.getElementById("days").textContent = days
+        //   .toString()
+        //   .padStart(2, "0");
+        document.getElementById("hours").textContent = hours
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("minutes").textContent = minutes
+          .toString()
+          .padStart(2, "0");
+        document.getElementById("seconds").textContent = seconds
+          .toString()
+          .padStart(2, "0");
+      };
+
+      const interval = setInterval(updateCountdown, 1000);
+      updateCountdown();
+
+      // Toggle between time values and alternate text
+      const toggleTimeValues = () => {
+        const timeElements = document.querySelectorAll(".time");
+        timeElements.forEach((time) => {
+          const currentText = time.textContent;
+          if (currentText === "SOON" || currentText === "XXXX") {
+            // Restore the original time value
+            const id = time.id;
+            if (id === "days") {
+              time.textContent = "??";
+            } else if (id === "hours" || id === "minutes" || id === "seconds") {
+              time.textContent = "00";
+            }
+          } else {
+            // Toggle to alternate text
+            time.textContent = Math.random() > 2 ? "SOON" : "XXXX";
+          }
+        });
+      };
+
+      // Toggle every 2 seconds
+      setInterval(toggleTimeValues, 2000);
+    </script>
+
+    <div class="address">
+      <button onclick="copyText()">
+        <span id="text">XXXXXXXXXX</span>
+      </button>
+    </div>
+    <script>
+      function copyText() {
+        const textToCopy = document.getElementById("text").innerText;
+
+        navigator.clipboard
+          .writeText(textToCopy)
+          .then(() => {
+            alert("Copied the address");
+          })
+          .catch((err) => {
+            console.error("Failed to copy address: ", err);
+          });
+      }
+    </script>
+  
+
+</body></html>
